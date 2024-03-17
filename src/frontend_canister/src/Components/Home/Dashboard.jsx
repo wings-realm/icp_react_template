@@ -61,11 +61,11 @@ const Dashboard = () => {
                 setProducts(response);
 
                 response.forEach((product) => {
-                    console.log("Product ID:", product.id);
-                    console.log("Product Title:", product.Title);
-                    console.log("Product Price:", product.Price);
-                    console.log("Product Rating:", product.Rating);
-                    console.log("Product Image:", product.Image);
+                    console.log("Product ID:", product[1].id);
+                    console.log("Product Title:", product[1].Title);
+                    console.log("Product Price:", product[1].Price);
+                    console.log("Product Rating:", product[1].Rating);
+                    console.log("Product Image:", product[1].Image);
                 });
             })
         };
@@ -77,17 +77,17 @@ const Dashboard = () => {
 
 
     return (
-
+     
         <div className="home">
             <div className="home__container">
                 {products.map(product => (
                     <Product
-                        key={product[0][1].id} // Ensure each product has a unique key
-                        id={product[0][1].id}
-                        title={product[0][1].Title}
-                        price={product[0][1].Price}
-                        rating={product[0][1].Rating}
-                        image={product[0][1].Image}
+                        key={product[1].id} // Ensure each product has a unique key
+                        id={product[1].id}
+                        title={product[1].Title}
+                        price={product[1].Price}
+                        rating={product[1].Rating}
+                        image={product[1].Image}
                     />
                 ))}
             </div>
