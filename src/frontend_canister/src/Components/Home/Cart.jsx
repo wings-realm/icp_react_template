@@ -12,44 +12,44 @@ function CartPage() {
 
     async function onButtonPress(el) {
         el.target.disabled = true;
-        console.log("buttom press");
+        console.log("button press");
         const hasAllowed = await window.ic?.plug?.requestConnect();
-      
+
         if (hasAllowed) {
-          el.target.textContent = "Plug wallet is connected"
-      
-          const balance = await window.ic?.plug?.requestBalance();
-      
-          if (balance >= total) {
-            el.target.textContent = "Plug wallet has enough balance"
-      
-            const requestTransferArg = {
-              to: 'oxdrp-7ysgo-g2uoe-4na4o-2lqie-zmrwm-64ogo-l7v4a-ycick-3255i-tqe',
-              amount: total,
-            };
-            const transfer = await window.ic?.plug?.requestTransfer(requestTransferArg);
-      
-            const transferStatus = transfer?.transactions?.transactions[0]?.status;
-      
-            if (transferStatus === 'COMPLETED') {
-              el.target.textContent = `Plug wallet transferred ${coffeeAmount} e8s`;
-            } else if (transferStatus === 'PENDING') {
-              el.target.textContent = "Plug wallet is pending.";
+            window.alert("Your Plug wallet is connected");
+
+            const balance = await window.ic?.plug?.requestBalance();
+
+            if (balance >= total) {
+                window.alert("Your Plug wallet has enough balance");
+
+                const requestTransferArg = {
+                    to: 'oxdrp-7ysgo-g2uoe-4na4o-2lqie-zmrwm-64ogo-l7v4a-ycick-3255i-tqe',
+                    amount: total,
+                };
+                const transfer = await window.ic?.plug?.requestTransfer(requestTransferArg);
+
+                const transferStatus = transfer?.transactions?.transactions[0]?.status;
+
+                if (transferStatus === 'COMPLETED') {
+                    window.alert(`Plug wallet transferred ${coffeeAmount} e8s`);
+                } else if (transferStatus === 'PENDING') {
+                    window.alert("Plug wallet is pending.");
+                } else {
+                    window.alert("Plug wallet failed to transfer");
+                }
             } else {
-              el.target.textContent = "Plug wallet failed to transfer";
+                window.alert("Plug wallet doesn't have enough balance");
             }
-          } else {
-            el.target.textContent = "Plug wallet doesn't have enough balance";
-          }
         } else {
-          el.target.textContent = "Plug wallet connection was refused";
+            window.alert("Plug wallet connection was refused");
         }
-      
+
         setTimeout(() => {
-          el.target.disabled = false;
-          el.target.textContent = "Buy me a coffee"
+            el.target.disabled = false;
         }, 5000);
-      }
+    }
+
 
     useEffect(() => {
         backend_canister.showCart(userPrincipal)
@@ -70,20 +70,23 @@ function CartPage() {
 
     return (
         <div className="cart">
-            <h1 className="cart__title">Your Cart</h1>
-            {cart.map((product, index) => (
-
-                <div className="cart__item" key={index}>
-                    <h2 className="cart__itemTitle">{product.Title}</h2>
-                    <p className="cart__itemPrice">Price: {parseInt(product.Price)}</p>
-                    <p className="cart__itemRating">Rating: {parseInt(product.Rating)}</p>
-                    <img className="cart__itemImage" src={product.Image} alt={product.Title} />
-                </div>
-            ))}
-            <h2 className="cart__total">Total: {total}</h2>
-            <div id="app">
-      <button onClick={onButtonPress}  id="buy-me-coffee">Pay Now</button>
-    </div>
+            <div className="cart__items">
+                <h1 className="cart__title">Your Cart</h1>
+                {cart.map((product, index) => (
+                    <div className="cart__item" key={index}>
+                        <img className="cart__itemImage" src={product.Image} alt={product.Title} />
+                        <div className="cart__itemDetails">
+                            <h2 className="cart__itemTitle">{product.Title}</h2>
+                            <p className="cart__itemPrice">Price: ICP {parseInt(product.Price)}</p>
+                            <p className="cart__itemRating">Rating: {parseInt(product.Rating)}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="cart__summary">
+                <h2 className="cart__total">Total: ICP {total}</h2>
+                <button onClick={onButtonPress} id="buy-me-coffee" className="cart__payButton">Pay Now</button>
+            </div>
         </div>
     );
 }
