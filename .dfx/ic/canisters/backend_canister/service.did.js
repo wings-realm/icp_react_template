@@ -12,18 +12,20 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Text],
         [],
       ),
+    'addToCart' : IDL.Func([IDL.Principal, IDL.Int], [IDL.Text], []),
     'getAllProducts' : IDL.Func(
         [],
         [IDL.Vec(IDL.Tuple(IDL.Int, Product))],
         ['query'],
       ),
     'getProduct' : IDL.Func([IDL.Int], [IDL.Opt(Product)], ['query']),
-    'greet' : IDL.Func(
-        [IDL.Int, IDL.Text, IDL.Int, IDL.Int, IDL.Text],
-        [IDL.Text],
+    'removeFromCart' : IDL.Func([IDL.Principal, IDL.Int], [IDL.Text], []),
+    'removeProduct' : IDL.Func([IDL.Int], [IDL.Opt(Product)], []),
+    'showCart' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(IDL.Vec(Product))],
         ['query'],
       ),
-    'removeProduct' : IDL.Func([IDL.Int], [IDL.Opt(Product)], []),
     'whoami' : IDL.Func([], [IDL.Principal], []),
   });
 };

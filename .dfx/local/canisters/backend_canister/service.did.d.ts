@@ -11,10 +11,12 @@ export interface Product {
 }
 export interface _SERVICE {
   'addProduct' : ActorMethod<[bigint, string, bigint, bigint, string], string>,
+  'addToCart' : ActorMethod<[Principal, bigint], string>,
   'getAllProducts' : ActorMethod<[], Array<[bigint, Product]>>,
   'getProduct' : ActorMethod<[bigint], [] | [Product]>,
-  'greet' : ActorMethod<[bigint, string, bigint, bigint, string], string>,
+  'removeFromCart' : ActorMethod<[Principal, bigint], string>,
   'removeProduct' : ActorMethod<[bigint], [] | [Product]>,
+  'showCart' : ActorMethod<[Principal], [] | [Array<Product>]>,
   'whoami' : ActorMethod<[], Principal>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;

@@ -8,12 +8,14 @@ type Product =
  };
 service : {
   addProduct: (int, text, int, int, text) -> (text);
+  addToCart: (principal, int) -> (text);
   getAllProducts: () -> (vec record {
                                int;
                                Product;
                              }) query;
   getProduct: (int) -> (opt Product) query;
-  greet: (int, text, int, int, text) -> (text) query;
+  removeFromCart: (principal, int) -> (text);
   removeProduct: (int) -> (opt Product);
+  showCart: (principal) -> (opt vec Product) query;
   whoami: () -> (principal);
 }

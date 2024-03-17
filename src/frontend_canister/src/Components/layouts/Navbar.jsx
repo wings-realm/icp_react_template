@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../utils/useAuthClient";
 import { useTranslation } from "react-i18next";
 import toast, { Toaster } from "react-hot-toast";
@@ -6,8 +6,8 @@ import Logo from '../../../assets/icpLogo2.png';
 import "./Navbar.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-
-
+import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Navbar = () => {
     const { isAuthenticated, logout } = useAuth();
 
@@ -23,13 +23,16 @@ const Navbar = () => {
         });
     };
 
+
     return (
         <div className="header">
-            <img
+            <button >
+                <Link to="/dashboard" className="header__option">
+                <img
                 className="header__logo"
                 src={Logo}
-                alt="Logo"
-            />
+                alt="Logo"/></Link>
+            </button>
             <div className="header__search">
                 <input className="header__searchInput" type="text" />
                 <SearchIcon className="header__searchIcon" />
@@ -45,18 +48,18 @@ const Navbar = () => {
                         <span className="header__optionLineTwo">Sign In</span>
                     </div>
                 )}
-                <div className="header__option">
-                    <span className="header__optionLineOne">Returns</span>
-                    <span className="header__optionLineTwo">& Orders</span>
+                <div>
+                    <button >
+                        <Link to="/cart" className="header__option">
+                        <ShoppingBasketIcon />
+                        </Link>
+                    </button>
                 </div>
                 <div className="header__option">
-                    <span className="header__optionLineOne">Your</span>
-                    <span className="header__optionLineTwo">Prime</span>
+                    <span className="header__optionLineOne">Contact Us</span>
                 </div>
-                <div className="header__optionBasket">
-                    <ShoppingBasketIcon />
-                    <span className="header__optionLineTwo header__basketCount">
-                    </span>
+                <div className="header__option">
+                    <span className="header__optionLineOne">About Us</span>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Product.css";
 import { useAuth } from "./useAuthClient"; // Assuming you might need authentication for adding to basket
-// import { backend_canister } from 'declarations/backend_canister';
+import { backend_canister } from '../../../../declarations/backend_canister';
 
 
 // Assuming you have defined getAuthenticatedUserPrincipal function here
@@ -13,8 +13,13 @@ const Product = ({ id, title, image, price, rating }) => {
     // Handle adding the product to basket
     if (isAuthenticated) {
       try {
-
+        window.alert("Added to Cart")
         console.log("User Principal:", principal);
+        backend_canister.addToCart(principal,id).then((response) => {
+          console.log(response);
+      });
+
+        
         // Implement the logic for adding to basket
       } catch (error) {
         console.error("Error while getting user principal:", error);

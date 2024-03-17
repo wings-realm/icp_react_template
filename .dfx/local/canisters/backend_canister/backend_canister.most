@@ -2,5 +2,6 @@
 type Product =
   {Image : Text; Price : Int; Rating : Int; Title : Text; id : Int};
 actor {
+  stable var stableCart : [(Principal, [Product])];
   stable var stableMap : [(Int, Product)]
 };
