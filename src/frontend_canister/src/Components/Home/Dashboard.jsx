@@ -77,17 +77,17 @@ const Dashboard = () => {
 
 
     return (
-     
+
         <div className="home">
             <div className="home__container">
                 {products.map(product => (
                     <Product
-                        key={product[1].id} // Ensure each product has a unique key
-                        id={product[1].id}
-                        title={product[1].Title}
-                        price={product[1].Price}
-                        rating={product[1].Rating}
-                        image={product[1].Image}
+                        key={product[0][1].id} // Ensure each product has a unique key
+                        id={product[0][1].id}
+                        title={product[0][1].Title}
+                        price={product[0][1].Price}
+                        rating={product[0][1].Rating}
+                        image={product[0][1].Image}
                     />
                 ))}
             </div>
