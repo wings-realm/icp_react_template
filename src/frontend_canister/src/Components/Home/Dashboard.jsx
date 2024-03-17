@@ -81,14 +81,26 @@ const Dashboard = () => {
         <div className="home">
             <div className="home__container">
                 {products.map(product => (
-                    <Product
-                        key={product[1].id} // Ensure each product has a unique key
-                        id={product[1].id}
-                        title={product[1].Title}
-                        price={product[1].Price}
-                        rating={product[1].Rating}
-                        image={product[1].Image}
-                    />
+                    // Convert id, price, and rating to string
+    const idString = String(product[1].id);
+    const priceString = String(product[1].Price);
+    const ratingString = String(product[1].Rating);
+
+    // Remove the last character from each string
+    const idWithoutLastChar = parseInt(idString.substring(0, idString.length - 1));
+    const priceWithoutLastChar = parseInt(priceString.substring(0, priceString.length - 1));
+    const ratingWithoutLastChar = parseInt(ratingString.substring(0, ratingString.length - 1));
+
+    return (
+        <Product
+            key={product[1].id} // Ensure each product has a unique key
+            id={idWithoutLastChar}
+            title={product[1].Title}
+            price={priceWithoutLastChar}
+            rating={ratingWithoutLastChar}
+            image={product[1].Image}
+        />
+    );
                 ))}
             </div>
         </div>
