@@ -52,46 +52,46 @@ import { backend_canister } from '../../../../declarations/backend_canister';
 
 const Dashboard = () => {
 
-    // const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
-    // useEffect(() => {
-    //     const fetchProducts = async () => {
-    //         backend_canister.getAllProducts().then((response) => {
-    //             console.log(response);
-    //             setProducts(response);
+    useEffect(() => {
+        const fetchProducts = async () => {
+            backend_canister.getAllProducts().then((response) => {
+                console.log(response);
+                setProducts(response);
 
-    //             response.forEach((product) => {
-    //                 console.log("Product ID:", product.id);
-    //                 console.log("Product Title:", product.Title);
-    //                 console.log("Product Price:", product.Price);
-    //                 console.log("Product Rating:", product.Rating);
-    //                 console.log("Product Image:", product.Image);
-    //             });
-    //         })
-    //     };
+                response.forEach((product) => {
+                    console.log("Product ID:", product.id);
+                    console.log("Product Title:", product.Title);
+                    console.log("Product Price:", product.Price);
+                    console.log("Product Rating:", product.Rating);
+                    console.log("Product Image:", product.Image);
+                });
+            })
+        };
 
 
 
-    //     fetchProducts();
-    // }, []);
+        fetchProducts();
+    }, []);
 
 
     return (
-        <h1>Market Place</h1>
-        // <div className="home">
-        //     <div className="home__container">
-        //         {products.map(product => (
-        //             <Product
-        //                 key={product.id} // Ensure each product has a unique key
-        //                 id={product.id}
-        //                 title={product.Title}
-        //                 price={product.Price}
-        //                 rating={product.Rating}
-        //                 image={product.Image}
-        //             />
-        //         ))}
-        //     </div>
-        // </div>
+     
+        <div className="home">
+            <div className="home__container">
+                {products.map(product => (
+                    <Product
+                        key={product[1].id} // Ensure each product has a unique key
+                        id={product[1].id}
+                        title={product[1].Title}
+                        price={product[1].Price}
+                        rating={product[1].Rating}
+                        image={product[1].Image}
+                    />
+                ))}
+            </div>
+        </div>
     );
 };
 

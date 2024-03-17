@@ -1,0 +1,8 @@
+{
+  "backend_canister": {
+    "ic": "hjvxk-faaaa-aaaal-qdtea-cai"
+  },
+  "frontend_canister": {
+    "ic": "hour6-iyaaa-aaaal-qdteq-cai"
+  }
+}

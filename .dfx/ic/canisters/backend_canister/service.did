@@ -1,0 +1,19 @@
+type Product = 
+ record {
+   Image: text;
+   Price: int;
+   Rating: int;
+   Title: text;
+   id: int;
+ };
+service : {
+  addProduct: (int, text, int, int, text) -> (text);
+  getAllProducts: () -> (vec record {
+                               int;
+                               Product;
+                             }) query;
+  getProduct: (int) -> (opt Product) query;
+  greet: (int, text, int, int, text) -> (text) query;
+  removeProduct: (int) -> (opt Product);
+  whoami: () -> (principal);
+}
